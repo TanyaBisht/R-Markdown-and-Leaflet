@@ -1,0 +1,33 @@
+---
+title: "R Markdown and Leaflet"
+author: "Tanya Bisht"
+date: "4/17/2020"
+output: html_document
+---
+
+
+```{r}
+library(leaflet)
+new_icon <- awesomeIcons(
+  icon = 'ios-close',
+  iconColor = 'black',
+  library = 'ion',
+  markerColor = "yellow"
+)
+
+content <- paste(sep = "<br/>",
+  "<b>IIM Shillong</b>",
+  "Nongthymmai",
+  "Shillong, 793014"
+)
+
+my_map <- leaflet() %>%
+    addTiles() %>%
+    addAwesomeMarkers(lat = 25.559108, lng = 91.904229,
+        icon = new_icon,
+        popup = "One of the premier B-Schools in India") %>%
+    addPopups(lat = 25.559108, lng = 91.904229, content,
+        options = popupOptions(closeButton = FALSE)
+    )
+my_map
+```
